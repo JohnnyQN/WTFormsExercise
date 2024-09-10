@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Our Pets</h1>
+
+<h2>Available Pets</h2>
+<div class="row pets-listing">
+  {% for pet in available_pets %}
+  <div class="col-3">
+    <img class="img-thumbnail" src="{{ pet.image_url() }}">
+    <a href="{{ url_for('edit_pet', pet_id=pet.id) }}">{{ pet.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+<h2>Pending Adoptions</h2>
+<div class="row pets-listing">
+  {% for pet in pending_pets %}
+  <div class="col-3">
+    <img class="img-thumbnail" src="{{ pet.image_url() }}">
+    <a href="{{ url_for('edit_pet', pet_id=pet.id) }}">{{ pet.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+<h2>Adopted Pets</h2>
+<div class="row pets-listing">
+  {% for pet in adopted_pets %}
+  <div class="col-3">
+    <img class="img-thumbnail" src="{{ pet.image_url() }}">
+    <a href="{{ url_for('edit_pet', pet_id=pet.id) }}">{{ pet.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+<a class="btn btn-primary" href="{{ url_for('add_pet') }}">Add a Pet</a>
+
+{% endblock %}
